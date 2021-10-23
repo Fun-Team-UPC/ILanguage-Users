@@ -1,0 +1,74 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+'abstract class AbstractList
+'abstract AbstractCollection
+'interface List
+'interface Collection
+
+
+UserCommandController <|-- RegisterUserRequest
+UserCommandController <|-- RegisterUserResponse
+UserCommandController <|-- UserApplicationService
+
+
+UserEventHandler <|-- UserDniRepository
+UserEventHandler <|-- UserDni
+UserEventHandler <|-- RegisterUserValidator
+
+
+UserApplicationService <|-- UserDniRepository
+UserApplicationService <|-- RegisterUserRequest
+UserApplicationService <|-- RegisterUserResponse
+
+RegisterUserValidator <|-- RegisterUserRequest
+RegisterUserValidator <|-- UserDni
+RegisterUserValidator <|-- UserDniRepository
+
+'command/api
+class UserCommandController {
+Object[] elementData
+size()
+}
+
+'command/application/handlers
+class UserEventHandler{
+Object[] elementData
+size()
+}
+'command/application/services
+class UserApplicationService{
+Object[] elementData
+size()
+}
+
+'command/application/dto/request
+class RegisterUserRequest{
+Object[] elementData
+size()
+}
+'command/application/dto/response
+class RegisterUserResponse{
+Object[] elementData
+size()
+}
+'command/infra
+interface  UserDniRepository{
+Object[] elementData
+size()
+}
+
+'command/infra
+class UserDni{
+Object[] elementData
+size()
+}
+
+'
+'enum TimeUnit {
+'DAYS
+'HOURS
+'MINUTES
+'}
+
+@enduml

@@ -1,6 +1,6 @@
 package ilenguage.userservice.demo.command.application.validators;
 
-import ilenguage.userservice.demo.command.application.dto.request.*;
+import ilenguage.userservice.demo.command.application.dto.request.RegisterUserRequest;
 import ilenguage.userservice.demo.command.infra.UserDni;
 import ilenguage.userservice.demo.command.infra.UserDniRepository;
 import org.springframework.stereotype.Component;

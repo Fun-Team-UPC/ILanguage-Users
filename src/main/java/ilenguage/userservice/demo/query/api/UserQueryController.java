@@ -20,6 +20,34 @@ public class UserQueryController {
         this.userViewRepository=userViewRepository;
     }
 
+    @GetMapping("")
+    public ResponseEntity<List<UserView>> getAllUsers(){
+        try {
+            return new ResponseEntity<List<UserView>>(userViewRepository.findAll(), HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
+    @RequestMapping(value= "id/{id}", method = RequestMethod.GET)
+    public ResponseEntity<UserView> getUserById(@PathVariable(name="id") String userId){
+        try {
+            return new ResponseEntity<UserView>(userViewRepository.getById(userId), HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value= "id/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<UserView> deleteById(@PathVariable(name="id") String userId){
+        try {
+             return new ResponseEntity<UserView>(userViewRepository.delById(userId), HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
