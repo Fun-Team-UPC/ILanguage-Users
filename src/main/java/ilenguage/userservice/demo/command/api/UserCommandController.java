@@ -8,7 +8,6 @@ import ilenguage.userservice.demo.command.application.dto.request.RegisterUserRe
 import ilenguage.userservice.demo.command.application.dto.request.EditUserRequest;
 import ilenguage.userservice.demo.command.application.dto.response.RegisterUserResponse;
 import ilenguage.userservice.demo.command.application.dto.response.EditUserResponse;
-import ilenguage.userservice.demo.command.application.dto.response.GetAllUsersResponse;
 import ilenguage.userservice.demo.command.application.services.UserApplicationService;
 import ilenguage.userservice.demo.command.domain.User;
 import org.axonframework.commandhandling.gateway.CommandGateway;

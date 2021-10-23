@@ -8,17 +8,15 @@ import ilenguage.userservice.demo.command.application.dto.request.RegisterUserRe
 import ilenguage.userservice.demo.command.application.dto.request.EditUserRequest;
 import ilenguage.userservice.demo.command.application.dto.response.RegisterUserResponse;
 import ilenguage.userservice.demo.command.application.dto.response.EditUserResponse;
-import ilenguage.userservice.demo.command.application.dto.response.GetAllUsersResponse;
 import ilenguage.userservice.demo.command.application.validators.RegisterUserValidator;
 import ilenguage.userservice.demo.command.application.validators.EditUserValidator;
 import ilenguage.userservice.demo.command.infra.UserDniRepository;
 import ILenguage.user.contracts.commands.RegisterUser;
 import ILenguage.user.contracts.commands.EditUser;
-import ILenguage.user.contracts.commands.EditUser;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Component;
-import ilenguage.userservice.demo.command.infra.*;
+
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
