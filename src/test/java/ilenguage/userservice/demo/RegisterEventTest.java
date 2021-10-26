@@ -11,34 +11,18 @@ import org.axonframework.test.aggregate.FixtureConfiguration;
 import org.junit.jupiter.api.Test;
 import ilenguage.userservice.demo.command.application.services.UserApplicationService;
 import ILenguage.user.contracts.commands.RegisterUser;
-import ILenguage.user.contracts.commands.EditUser;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 
 import java.util.UUID;
 
 public class RegisterEventTest {
-    private FixtureConfiguration<UserApplicationService> fixture;
-
-    private UserApplicationService userApplicationService;
-    public RegisterUser registerUser;
-
+    private FixtureConfiguration fixture;
 
     @Before
     public void setUp() throws Exception{
-        fixture = new AggregateTestFixture<>(UserApplicationService.class);
-        AggregateAnnotationCommandHandler commandHandler = new AggregateAnnotationCommandHandler<>(UserApplicationService.class,fixture.getRepository());
+        fixture = new AggregateTestFixture<>(RegisterUser.class);
+        AggregateAnnotationCommandHandler commandHandler = new AggregateAnnotationCommandHandler<>(RegisterUser.class, fixture.getRepository());
         fixture.registerAnnotatedCommandHandler(commandHandler);
-    }
-
-    @Test
-    public void testFirstFixture() {
-        String userId = UUID.randomUUID().toString();
-        fixture.given(new RegisterUser(userId,"test1","SWAGtest","75104902"))
-                .when(new RegisterUserResponse(registerUser.getUserId(),registerUser.getFirstName(),registerUser.getLastName(),registerUser.getDni()))
-                .expectSuccessfulHandlerExecution()
-                .expectEvents(new RegisterUser(userId,"test1","SWAGtest","75104902"));
     }
 
     @Test
@@ -50,7 +34,13 @@ public class RegisterEventTest {
                 .expectEvents(new RegisterUser(userId,"test1","SWAGtest","75104902"));
 
     }
-
-
+//    @Test
+//    public void testFirstFixture() {
+//        String userId = UUID.randomUUID().toString();
+//        fixture.given(new RegisterUser(userId,"test1","SWAGtest","75104902"))
+//                .when(new RegisterUserResponse(registerUser.getUserId(),registerUser.getFirstName(),registerUser.getLastName(),registerUser.getDni()))
+//                .expectSuccessfulHandlerExecution()
+//                .expectEvents(new RegisterUser(userId,"test1","SWAGtest","75104902"));
+//    }
 
 }
