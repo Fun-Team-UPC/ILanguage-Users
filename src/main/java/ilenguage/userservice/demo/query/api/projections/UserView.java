@@ -1,4 +1,4 @@
-package ilenguage.userservice.demo.query.projections;
+package ilenguage.userservice.demo.query.api.projections;
 
 import lombok.Getter;
 import lombok.Setter;

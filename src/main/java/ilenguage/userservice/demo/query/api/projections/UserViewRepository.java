@@ -1,4 +1,4 @@
-package ilenguage.userservice.demo.query.projections;
+package ilenguage.userservice.demo.query.api.projections;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,7 +17,7 @@ public interface UserViewRepository extends JpaRepository<UserView, String>{
     @Query(value = "SELECT * FROM user_view  WHERE user_id=?1",nativeQuery = true)
     public UserView getById(String userId);
 
-    @Modifying
-    @Query(value = "DELETE FROM user_view u WHERE u.user_id = :userId",nativeQuery = true)
-    public UserView delById(String userId);
+//    @Modifying
+//    @Query(value = "DELETE FROM user_view u WHERE u.user_id = :userId",nativeQuery = true)
+//    public UserView delById(String userId);
 }
