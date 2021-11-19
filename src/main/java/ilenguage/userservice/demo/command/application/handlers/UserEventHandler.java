@@ -19,7 +19,8 @@ public class UserEventHandler {
     }
     @EventHandler
     public void on(UserRegistered event) {
-       userDniRepository.save(new UserDni(event.getDni(), event.getUserId()));
+
+        userDniRepository.save(new UserDni(event.getDni(), event.getUserId()));
     }
 
 }

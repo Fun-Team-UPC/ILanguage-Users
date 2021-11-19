@@ -9,39 +9,41 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ILenguage.user.contracts.commands.RegisterUser;
 
-
 import java.time.Instant;
 import java.util.UUID;
 
 public class RegisterEventTest {
-    private FixtureConfiguration fixture;
+    private FixtureConfiguration<User> fixture;
 
     @BeforeEach
-    public void setUp() throws Exception{
-        fixture = new AggregateTestFixture(User.class);
+    public void setUp() {
+        fixture = new AggregateTestFixture<>(User.class);
     }
 
     @Test
     public void createRegister() throws Exception{
         String userId = UUID.randomUUID().toString();
-        Instant now = Instant.now();
-        RegisterUser registerUser = new RegisterUser(userId,"test1","SWAGtest","75104902");
+        Instant ocurredOn = Instant.now();
+        RegisterUser registerUser = new RegisterUser(userId,"testt222","SWAGtest","75104901",ocurredOn);
+
+        UserRegistered userRegistered = new UserRegistered(registerUser.getUserId(),registerUser.getFirstName(),registerUser.getLastName(),registerUser.getDni(),ocurredOn);
 
         fixture.given()
-                .when(registerUser = new RegisterUser(userId,"test2","SWAGtesting","75104909"))
-                .expectSuccessfulHandlerExecution()
-                .expectEvents(new UserRegistered(registerUser.getUserId(),registerUser.getFirstName(),registerUser.getLastName(),registerUser.getDni(),now));
+                .when(registerUser)
+                .expectEvents(userRegistered);
 
     }
+
 
     @Test
     public void createExistingUser() {
         String userId = UUID.randomUUID().toString();
-        Instant now = Instant.now();
-        RegisterUser registerUser = new RegisterUser(userId,"test1","SWAGtest","75104902");
+        Instant ocurredOn = Instant.now();
+        RegisterUser registerUser = new RegisterUser(userId,"test1","SWAGtest","75104902",ocurredOn);
 
-        fixture.given(new UserRegistered(registerUser.getUserId(),registerUser.getFirstName(),registerUser.getLastName(),registerUser.getDni(),now))
-                .when(new RegisterUser(userId,"test1","SWAGtest","75104902"))
+
+        fixture.given(new UserRegistered(registerUser.getUserId(),registerUser.getFirstName(),registerUser.getLastName(),registerUser.getDni(),ocurredOn))
+                .when(registerUser)
                 .expectException(EventStoreException.class);
     }
 

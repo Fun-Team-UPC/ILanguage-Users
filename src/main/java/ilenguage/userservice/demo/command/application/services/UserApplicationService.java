@@ -17,6 +17,7 @@ import ILenguage.user.contracts.commands.EditUser;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -37,15 +38,19 @@ public class UserApplicationService {
     public Result<RegisterUserResponse, Notification> register(RegisterUserRequest registerUserRequest) throws Exception {
         Notification notification = this.registerUserValidator.validate(registerUserRequest);
 
+
         if (notification.hasErrors()) {
             return Result.failure(notification);
         }
         String userId = UUID.randomUUID().toString();
+        Instant ocurredOn = Instant.now();
+
         RegisterUser registerUser = new RegisterUser(
                 userId,
                 registerUserRequest.getFirstName().trim(),
                 registerUserRequest.getLastName().trim(),
-                registerUserRequest.getDni().trim()
+                registerUserRequest.getDni().trim(),
+                ocurredOn
         );
         CompletableFuture<Object> future = commandGateway.send(registerUser);
         CompletableFuture<ResultType> futureResult = future.handle((ok, ex) -> (ex != null) ? ResultType.FAILURE : ResultType.SUCCESS);

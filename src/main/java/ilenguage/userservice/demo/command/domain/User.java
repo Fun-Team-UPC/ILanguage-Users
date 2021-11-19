@@ -17,21 +17,22 @@ public class User {
     private String firstName;
     private String lastName;
     private String dni;
-    private UserStatus status;
+    private Instant occurredOn;
 
     public User(){
+
     }
 
     @CommandHandler
     public User(RegisterUser command){
-        Instant now = Instant.now();
+
         apply(
                 new UserRegistered(
                     command.getUserId(),
                         command.getFirstName(),
                         command.getLastName(),
                         command.getDni(),
-                        now
+                        command.getOccurredOn()
                 )
         );
     }
@@ -42,7 +43,8 @@ public class User {
         firstName = event.getFirstName();
         lastName = event.getLastName();
         dni = event.getDni();
-        status = UserStatus.ACTIVE;
+        UserStatus status = UserStatus.ACTIVE;
     }
 
 }
+
