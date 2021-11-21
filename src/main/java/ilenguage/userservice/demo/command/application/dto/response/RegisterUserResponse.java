@@ -1,4 +1,5 @@
 package ilenguage.userservice.demo.command.application.dto.response;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Value;
 
 @Value

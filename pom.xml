@@ -111,10 +111,14 @@
         </dependency>
 
 <!--        <dependency>-->
-<!--            <groupId>pe.edu.upc</groupId>-->
-<!--            <artifactId>banking-common</artifactId>-->
-<!--            <version>0.1.2</version>-->
+<!--            <groupId>org.example</groupId>-->
+<!--            <artifactId>ILenguage-user-contracts</artifactId>-->
+<!--            <version>1.4</version>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+        </dependency>
 
     </dependencies>
 

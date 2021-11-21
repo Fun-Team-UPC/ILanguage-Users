@@ -10,6 +10,11 @@ import ilenguage.userservice.demo.command.application.dto.response.RegisterUserR
 import ilenguage.userservice.demo.command.application.dto.response.EditUserResponse;
 import ilenguage.userservice.demo.command.application.services.UserApplicationService;
 import ilenguage.userservice.demo.command.domain.User;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateNotFoundException;
 import org.springframework.http.MediaType;
@@ -30,6 +35,14 @@ public class UserCommandController {
         this.userApplicationService = userApplicationService;
     }
 
+
+    @Operation(summary="Save User", description="This endpoint is for saving a new user for Ilanguage Application", tags = {"Users"} )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description="user register", content = @Content(mediaType = "application/json",
+            schema = @Schema(example = "{\"userid\": \"54ac7365-3e3a-48cc-9747-fc776a98f572\",\"firstname\": \"richard\",\"lastname\": \"alonzo\",\"status\": \"on\",\"update_at\": 2021-11-21T02:01:55.408Z}"))),
+            @ApiResponse(responseCode = "404", description="Users Not Found", content = @Content(mediaType = "application/json"))
+
+    })
     @PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> registerUser(@RequestBody RegisterUserRequest registerUserRequest) {
 
@@ -45,6 +58,7 @@ public class UserCommandController {
 
     }
 
+    @Operation(summary="Edit user", description="This endpoind is for editing an existing user in Ilanguage Application", tags = {"Users"} )
     @PutMapping("/{userId}")
     public ResponseEntity<Object> editUser(@PathVariable("userId") String userId, @RequestBody EditUserRequest editUserRequest) {
         try {
